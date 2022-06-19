@@ -1,18 +1,18 @@
 <?php
     //koneksi db
-    $koneksi = mysqli_connect('localhost', 'root', 'pwd_2022');
+    $koneksi = mysqli_connect('localhost', 'root', '', 'pwd_2022');
     echo "koneksi sukses";
 
     //menampilkan data dari db ke tabel
     //1. query isi tabel
-    $result = mysqli_query($koneksi, 'SELECT * FROM pwd_2022');
-    var_dump($result);//muncul data array
+    $result = mysqli_query($koneksi, 'SELECT * FROM mahasiswa');
+    //var_dump($result);//muncul data array
 
     //2. ubah data ke dlm array
     //*array numerik
     //*array associative; mysqli_fetch_assoc
     $data = mysqli_fetch_assoc($result);
-    var_dump($data);
+    //var_dump($data);
 
     //3.looping data
     $baris = [];
@@ -21,8 +21,7 @@
     }
 
     //4. tampung hasil looping ke dlm variabel
-    $pwd_2022 = $baris;
-
+    $mahasiswa = $baris;
 ?>
 
 
@@ -49,17 +48,19 @@
 
         <!-- baris header -->
         <!-- looping -->
-        <?php $i = 1; foreach ($pwd_2022 as $pwd);?>
+        <?php $i = 1; 
+        foreach ($mahasiswa as $mhs):?>
         <tr>
             <td><?= $i++;?></td>
             <td>Foto</td>
-            <td><?=$pwd['nim'];?></td>
-            <td><?=$pwd['nama'];?></td>
-            <td><?=$pwd['prodi'];?></td>
+            <td><?=$mhs['nim'];?></td>
+            <td><?=$mhs['nama'];?></td>
+            <td><?=$mhs['prodi'];?></td>
             <td>
                 <a href="">Ubah</a>|<a href="">Hapus</a>
             </td>
         </tr>
         <?php endforeach; ?>
+    </tabel>
 </body>
 </html>
